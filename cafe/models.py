@@ -7,9 +7,9 @@ class Order(models.Model):
         ('paid', 'Оплачено')
     ]
     table_number = models.IntegerField(verbose_name='Номер столика')
-    items = models.JSONField()
+    items = models.JSONField(verbose_name='Заказ')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Сумма заказа')
-    status = models.CharField(max_length=10, choices=STATUS, default='В ожидании')
+    status = models.CharField(max_length=10, choices=STATUS, default='В ожидании', verbose_name='Статус')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
 
     def __str__(self):
