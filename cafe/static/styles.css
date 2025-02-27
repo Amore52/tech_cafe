@@ -59,6 +59,7 @@ tr:hover {
     background-color: #0056b3;
 }
 
+
 .form-container {
     background-color: #fff;
     padding: 20px;
@@ -87,5 +88,31 @@ tr:hover {
 }
 
 .form-container button:hover {
+    background-color: #0056b3;
+}
+
+.filters-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters-container input[type="text"], .filters-container select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filters-container button {
+    padding: 8px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filters-container button:hover {
     background-color: #0056b3;
 }

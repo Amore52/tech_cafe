@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,22 @@
 <body>
     <h1>Список заказов</h1>
     <a href="{% url 'add_order' %}" class="button">Добавить заказ</a>
+    <a href="{% url 'calculate_revenue' %}" class="button">Рассчитать выручку</a>
+    <div class="filters-container">
+        <form method="get" action="{% url 'order_list' %}">
+            <input type="text" name="query" placeholder="Поиск по номеру стола" value="{{ request.GET.query }}">
+            <button type="submit">Найти</button>
+        </form>
+        <form method="get" action="{% url 'order_list' %}">
+            <select name="status">
+                <option value="">Все статусы</option>
+                {% for value, label in status_choices %}
+                    <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Фильтровать</button>
+        </form>
+    </div>
     <table>
         <tr>
             <th>ID</th>
@@ -17,9 +33,9 @@
             <th>Блюда</th>
             <th>Общая стоимость</th>
             <th>Статус</th>
-            <th>Действия</th>
             <th>Дата создания</th>
             <th>Дата выполнения</th>
+            <th>Действия</th>
         </tr>
         {% for order in orders %}
         <tr>
@@ -34,15 +50,15 @@
             </td>
             <td>{{ order.total_price }}</td>
             <td>{{ order.get_status_display }}</td>
-            <td>{{ order.created_at }}</td>
-            <td>{{ order.completed_at|default:"-" }}</td>
-            <td class="actions">
+            <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+            <td>{{ order.completed_at|date:"d.m.Y H:i"|default:"-" }}</td>
+            <td>
                 <a href="{% url 'edit_order' order.id %}">Изменить</a>
                 <a href="{% url 'delete_order' order.id %}">Удалить</a>
             </td>
         </tr>
         {% endfor %}
     </table>
-    <a href="{% url 'calculate_revenue' %}" class="button">Рассчитать выручку</a>
+
 </body>
 </html>
