@@ -24,5 +24,4 @@ class Order(models.Model):
         self.total_price = sum(item['price'] for item in self.items)
         if self.status == 'paid' and not self.completed_at:
             self.completed_at = timezone.now()
-
         super().save(*args, **kwargs)
