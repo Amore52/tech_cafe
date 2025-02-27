@@ -20,7 +20,9 @@ class Order(models.Model):
         return f'Заказ №{self.id}'
 
     def save(self, *args, **kwargs):
+
         self.total_price = sum(item['price'] for item in self.items)
         if self.status == 'paid' and not self.completed_at:
             self.completed_at = timezone.now()
+
         super().save(*args, **kwargs)

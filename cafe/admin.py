@@ -11,3 +11,4 @@ class OrderAdmin(admin.ModelAdmin):
     list_editable = ('status',)
     list_per_page = 20
 
+

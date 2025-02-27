@@ -4,6 +4,7 @@ from django.utils import timezone
 from .models import Order
 from .forms import OrderForm
 
+
 def order_list(request):
     query = request.GET.get('query')
     status_filter = request.GET.get('status')
