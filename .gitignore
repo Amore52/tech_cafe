@@ -1,0 +1,60 @@
+# Byte-compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+.env/
+ENV/
+env/
+Environment/
+.venv/
+env.bak/
+venv.bak/
+
+# Django specific
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# PyCharm specific
+*.iml
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Makemigrations and Migrate artifacts
+*migrations/*.py
+!migrations/__init__.py
+
+# Temporary files
+*~
+tmp/
+temp/
+
+# Secrets and sensitive data
+.env
+*.env
+.local
+
+# Cache files
+file_cache/
+htmlcov/
+
+# Test files
+coverage.xml
+.tox/
+.nox/
