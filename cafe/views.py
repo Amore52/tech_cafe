@@ -1,9 +1,8 @@
 from django.db.models import Sum
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 from .models import Order
 from .forms import OrderForm
-from django.utils import timezone
-
 
 def order_list(request):
     query = request.GET.get('query')

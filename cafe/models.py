@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 class Order(models.Model):
     STATUS = [
@@ -20,7 +22,5 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         self.total_price = sum(item['price'] for item in self.items)
         if self.status == 'paid' and not self.completed_at:
-            from django.utils import timezone
             self.completed_at = timezone.now()
-
         super().save(*args, **kwargs)
