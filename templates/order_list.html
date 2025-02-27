@@ -1,26 +1,48 @@
-<h1>Список заказов</h1>
-<a href="{% url 'add_order' %}">Добавить заказ</a>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Номер стола</th>
-        <th>Блюда</th>
-        <th>Общая стоимость</th>
-        <th>Статус</th>
-        <th>Действия</th>
-    </tr>
-    {% for order in orders %}
-    <tr>
-        <td>{{ order.id }}</td>
-        <td>{{ order.table_number }}</td>
-        <td>{{ order.items }}</td>
-        <td>{{ order.total_price }}</td>
-        <td>{{ order.get_status_display }}</td>
-        <td>
-            <a href="{% url 'edit_order' order.id %}">Изменить</a>
-            <a href="{% url 'delete_order' order.id %}">Удалить</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-<a href="{% url 'calculate_revenue' %}">Рассчитать выручку</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список заказов</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Список заказов</h1>
+    <a href="{% url 'add_order' %}" class="button">Добавить заказ</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Номер стола</th>
+            <th>Блюда</th>
+            <th>Общая стоимость</th>
+            <th>Статус</th>
+            <th>Действия</th>
+            <th>Дата создания</th>
+            <th>Дата выполнения</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.table_number }}</td>
+            <td>
+                <ul>
+                    {% for item in order.items %}
+                    <li>{{ item.name }} - {{ item.price }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.get_status_display }}</td>
+            <td>{{ order.created_at }}</td>
+            <td>{{ order.completed_at|default:"-" }}</td>
+            <td class="actions">
+                <a href="{% url 'edit_order' order.id %}">Изменить</a>
+                <a href="{% url 'delete_order' order.id %}">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'calculate_revenue' %}" class="button">Рассчитать выручку</a>
+</body>
+</html>
