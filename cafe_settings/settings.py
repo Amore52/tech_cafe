@@ -1,11 +1,17 @@
 from pathlib import Path
+import environ
+
+
+
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-f)8n6rjp2oif@p$&p_amcaf%zz)ce5n4w@)nrty!dg%3g5a3=l'
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / '.env')
 
-DEBUG = True
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -17,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'cafe',
 ]
 

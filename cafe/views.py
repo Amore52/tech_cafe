@@ -4,14 +4,21 @@ from django.db import transaction
 from django.db.models import Sum, F
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from rest_framework import viewsets
 from .models import Order
 from .forms import OrderForm, OrderItemFormSet
+from .serializers import OrderSerializer
 
 
 logger = logging.getLogger(__name__)
 
 def index(request):
     return render(request, 'index.html')
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all().prefetch_related('order_items')
+    serializer_class = OrderSerializer
 
 
 def order_list(request):
