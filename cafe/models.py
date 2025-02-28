@@ -21,7 +21,7 @@ class Order(models.Model):
         (STATUS_PAID, 'Заказ выполнен')
     ]
     table_number = models.IntegerField(validators=[MinValueValidator(1)], verbose_name='Номер столика')
-    status = models.CharField(max_length=10, choices=STATUS, default='STATUS_PENDING', verbose_name='Статус')
+    status = models.CharField(max_length=10, choices=STATUS, default=STATUS_PENDING, verbose_name='Статус')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
     completed_at = models.DateTimeField(null=True, blank=True, verbose_name='Дата и время выполнения')
 
