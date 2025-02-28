@@ -1,17 +1,28 @@
+:root {
+    --primary-color: #007BFF;
+    --primary-hover-color: #0056b3;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --white: #fff;
+    --border-color: #ddd;
+    --hover-background: #f1f1f1;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--background-color);
     margin: 0;
-    padding: 20px;
+    padding: 1.25rem;
+    color: var(--text-color);
 }
 
 h1 {
-    color: #333;
+    color: var(--text-color);
 }
 
 a {
     text-decoration: none;
-    color: #007BFF;
+    color: var(--primary-color);
 }
 
 a:hover {
@@ -21,98 +32,155 @@ a:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    background-color: #fff;
+    margin: 1.25rem 0;
+    background-color: var(--white);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-    padding: 12px;
+    padding: 0.75rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
 }
 
 th {
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: var(--hover-background);
 }
 
 .actions a {
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .button {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    padding: 0.625rem 0.9375rem;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
+    text-decoration: none;
     cursor: pointer;
+    margin-right: 0.625rem;
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover-color);
 }
-
 
 .form-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
+    background-color: var(--white);
+    padding: 1.25rem;
+    border-radius: 0.3125rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 20px auto;
+    max-width: 31.25rem;
+    margin: 1.25rem auto;
 }
 
-.form-container input, .form-container select {
+.form-container input,
+.form-container select {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 0.625rem;
+    margin: 0.625rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 0.3125rem;
+    box-sizing: border-box;
 }
 
 .form-container button {
+    display: block;
     width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
+    padding: 0.625rem;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     cursor: pointer;
+    margin-bottom: 0.625rem;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:last-child {
+    margin-bottom: 0;
 }
 
 .form-container button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover-color);
 }
 
 .filters-container {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
 }
 
-.filters-container input[type="text"], .filters-container select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.filters-container input[type="text"],
+.filters-container select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.3125rem;
 }
 
 .filters-container button {
-    padding: 8px 15px;
-    background-color: #007BFF;
-    color: white;
+    padding: 0.5rem 0.9375rem;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .filters-container button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover-color);
+}
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin: 0.625rem 0;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem;
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    border-radius: 0.3125rem;
+}
+
+.item-name {
+    font-weight: bold;
+    margin-right: 0.625rem;
+}
+
+.item-price {
+    font-size: 0.9em;
+    color: #555;
+    margin-right: 0.625rem;
+}
+
+.item-checkbox {
+    margin-left: 0.625rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .filters-container {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+        margin-bottom: 0.625rem;
+    }
 }

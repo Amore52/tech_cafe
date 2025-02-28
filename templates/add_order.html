@@ -6,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавить заказ</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.createElement('button');
+            addButton.type = 'button';
+            addButton.innerText = 'Добавить блюдо';
+            addButton.classList.add('add-item-button');
+
+            const itemsList = document.querySelector('.items-list');
+            const totalForms = document.getElementById('id_order_items-TOTAL_FORMS');
+
+            addButton.addEventListener('click', function() {
+                const formCount = parseInt(totalForms.value);
+                const newForm = itemsList.querySelector('.item').cloneNode(true);
+                const newFormHtml = newForm.innerHTML.replace(/order_items-\d+/g, `order_items-${formCount}`);
+
+                newForm.innerHTML = newFormHtml;
+                itemsList.appendChild(newForm);
+                totalForms.value = formCount + 1;
+            });
+
+            itemsList.parentNode.insertBefore(addButton, itemsList.nextSibling);
+        });
+</script>
 </head>
 <body>
     <div class="form-container">
@@ -13,7 +36,18 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="button">Сохранить</button>
+
+            <h3>Блюда</h3>
+            {{ order_item_formset.management_form }}
+            <div class="items-list">
+                {% for form in order_item_formset %}
+                <div class="item">
+                    {{ form.item }}
+                    {{ form.quantity }}
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Сохранить</button>
         </form>
     </div>
 </body>
