@@ -28,6 +28,10 @@ class Order(models.Model):
     def __str__(self):
         return f'Заказ №{self.id}'
 
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
     @property
     def total_price(self) -> float:
         """
@@ -59,6 +63,10 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Блюдо'
+        verbose_name_plural = 'Блюда'
 
 
 class OrderItem(models.Model):
